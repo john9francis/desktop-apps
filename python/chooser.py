@@ -16,6 +16,10 @@ class Chooser:
 
   def get_random_word(self):
     return random.choice(self.word_list)
+  
+
+  def get_word_list(self):
+    return self.word_list
 
 
   def add_csv_to_word_list(self, csv_string):
