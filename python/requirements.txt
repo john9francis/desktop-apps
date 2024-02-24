@@ -1,4 +1,4 @@
 random
 os
 sys
-cx_Freeze
+pyinstaller
