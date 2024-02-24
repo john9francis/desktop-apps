@@ -14,6 +14,11 @@ def main():
   def on_enter_pressed(event):
     label_result.config(text=f"Enter pressed")
 
+  def adjust_pady(pady_factor):
+    root.update_idletasks()
+    current_height = root.winfo_height()
+    pady = current_height * pady_factor
+    return pady
 
   # Create the main window
   root = tk.Tk()
@@ -25,9 +30,17 @@ def main():
   # set size
   root.geometry("800x400")
 
+  # The gui elements go from top to bottom 
+
+  # Title element
+  title_font = ("Times New Roman", 20)
+  title =  tk.Label(root, text="Random Chooser App", font=title_font)
+  title.pack(pady=10)
+
   # text entry element
   entry = tk.Entry(root, width=30)
-  entry.pack(pady=(250,0))
+  original_entry_pady = 2/3
+  entry.pack(pady=(adjust_pady(original_entry_pady),10))
 
   # choose random button
   button = tk.Button(root, text="Submit", command=on_button_click)
