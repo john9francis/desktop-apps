@@ -19,6 +19,11 @@ def main():
     current_height = root.winfo_height()
     pady = current_height * pady_factor
     return pady
+  
+  def update_textbox_pos(event):
+    window_height = root.winfo_height()
+    desired_y = .5 * window_height
+    entry.pack(pady=(desired_y, 10))
 
   # Create the main window
   root = tk.Tk()
@@ -35,12 +40,11 @@ def main():
   # Title element
   title_font = ("Times New Roman", 20)
   title =  tk.Label(root, text="Random Chooser App", font=title_font)
-  title.pack(pady=10)
+  title.pack(pady=(10,0))
 
   # text entry element
   entry = tk.Entry(root, width=30)
-  original_entry_pady = 2/3
-  entry.pack(pady=(adjust_pady(original_entry_pady),10))
+  entry.pack(pady=10)
 
   # choose random button
   button = tk.Button(root, text="Submit", command=on_button_click)
@@ -52,6 +56,8 @@ def main():
 
   # bind the enter button
   entry.bind("<Return>", on_enter_pressed)
+  # bind changing window size to moving entry
+  root.bind("<Configure>", update_textbox_pos)
 
   # Run the Tkinter event loop
   root.mainloop()
