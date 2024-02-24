@@ -7,7 +7,7 @@ from chooser import Chooser
 
 def main():
 
-  def on_enter_pressed(event):
+  def add_to_list(event=None):
     input_text = entry.get()
     chooser.add_csv_to_word_list(input_text)
     update_words_display()
@@ -21,7 +21,7 @@ def main():
     Update the words display with the
     words in the chooser
     '''
-    updated_text = ' '.join(chooser.get_word_list())
+    updated_text = '\n'.join(chooser.get_word_list())
     words.config(text=updated_text)
 
   
@@ -31,10 +31,10 @@ def main():
     pass
 
 
-  def update_textbox_pos(event):
+  def update_frame_pos(event):
     window_height = root.winfo_height()
     desired_y = .3 * window_height
-    entry.pack(pady=(desired_y, 10))
+    frame.pack(pady=(desired_y, 10))
 
   def clear_list():
     chooser.clear_word_list()
@@ -57,7 +57,7 @@ def main():
   # The gui elements go from top to bottom 
 
   # Title element
-  title_font = ("Times New Roman", 20)
+  title_font = ("Times New Roman", 50)
   title =  tk.Label(root, text="Random Chooser App", font=title_font)
   title.pack(pady=(10,0))
 
@@ -65,9 +65,17 @@ def main():
   words = tk.Label(root, text="")
   words.pack()
 
+  # element for the entry and submit buttons
+  frame = tk.Frame(root)
+  frame.pack()
+
   # text entry element
-  entry = tk.Entry(root, width=30)
-  entry.pack(pady=10)
+  entry = tk.Entry(frame, width=30)
+  entry.pack(side="left", padx=5)
+
+  # submit button
+  submit = tk.Button(frame, text="Add to list", command=add_to_list)
+  submit.pack(side="right", padx=5)
 
   # clear list button
   clear_button = tk.Button(root, text="Clear list", command=clear_list)
@@ -82,9 +90,9 @@ def main():
   label_result.pack(pady=10)
 
   # bind the enter button
-  entry.bind("<Return>", on_enter_pressed)
+  entry.bind("<Return>", add_to_list)
   # bind changing window size to moving entry
-  root.bind("<Configure>", update_textbox_pos)
+  root.bind("<Configure>", update_frame_pos)
 
   # Run the Tkinter event loop
   root.mainloop()
