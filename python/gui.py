@@ -53,6 +53,7 @@ def main():
 
   # set size
   root.geometry("800x400")
+  root.minsize(600, 400)
 
   # The gui elements go from top to bottom 
 
