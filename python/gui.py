@@ -33,8 +33,12 @@ def main():
 
   def update_textbox_pos(event):
     window_height = root.winfo_height()
-    desired_y = .5 * window_height
+    desired_y = .3 * window_height
     entry.pack(pady=(desired_y, 10))
+
+  def clear_list():
+    chooser.clear_word_list()
+    update_words_display()
 
   # create our random chooser
   chooser = Chooser()
@@ -64,6 +68,10 @@ def main():
   # text entry element
   entry = tk.Entry(root, width=30)
   entry.pack(pady=10)
+
+  # clear list button
+  clear_button = tk.Button(root, text="Clear list", command=clear_list)
+  clear_button.pack(pady=10)
 
   # choose random button
   button = tk.Button(root, text="Choose random", command=on_button_click)
