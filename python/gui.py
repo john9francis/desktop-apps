@@ -1,29 +1,44 @@
 # creates a tkinter gui
 
 import tkinter as tk
+from chooser import Chooser
 
 
 
 def main():
 
-  def on_button_click():
-    input_text = entry.get()
-    label_result.config(text=f"You entered: {input_text}")
-
-
   def on_enter_pressed(event):
-    label_result.config(text=f"Enter pressed")
+    input_text = entry.get()
+    chooser.add_csv_to_word_list(input_text)
+    update_words_display()
 
-  def adjust_pady(pady_factor):
-    root.update_idletasks()
-    current_height = root.winfo_height()
-    pady = current_height * pady_factor
-    return pady
+    # clear out textbox
+    entry.delete(0, tk.END)
+
+
+  def update_words_display():
+    '''
+    Update the words display with the
+    words in the chooser
+    '''
+    updated_text = ' '.join(chooser.get_word_list())
+    words.config(text=updated_text)
+
   
+  def on_button_click():
+    rand_word = chooser.get_random_word()
+    label_result.config(text=rand_word)
+    pass
+
+
   def update_textbox_pos(event):
     window_height = root.winfo_height()
     desired_y = .5 * window_height
     entry.pack(pady=(desired_y, 10))
+
+  # create our random chooser
+  chooser = Chooser()
+  
 
   # Create the main window
   root = tk.Tk()
@@ -42,12 +57,16 @@ def main():
   title =  tk.Label(root, text="Random Chooser App", font=title_font)
   title.pack(pady=(10,0))
 
+  # list of words element
+  words = tk.Label(root, text="")
+  words.pack()
+
   # text entry element
   entry = tk.Entry(root, width=30)
   entry.pack(pady=10)
 
   # choose random button
-  button = tk.Button(root, text="Submit", command=on_button_click)
+  button = tk.Button(root, text="Choose random", command=on_button_click)
   button.pack(pady=10)
 
   # Random choice button
