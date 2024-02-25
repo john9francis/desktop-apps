@@ -23,6 +23,12 @@ Here's how to compile your app with pyinstaller.
 pyinstaller --onefile cli.py
 ```
 
+For compiling with a gui and no console, note: must run as administrator:
+
+```
+pyinstaller --onefile --noconsole gui.py
+```
+
 # Using docker to compile for cross-platform
 Finding macOS and linux images would be good for compiling for those platforms. The only issue is that macOS won't run apps unless they have been notarized by apple... That's complicated. The best way to compile on macOS or linux would be to run pyinstaller while using one of those operating systems. 
 
