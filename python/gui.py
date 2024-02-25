@@ -63,7 +63,9 @@ def main():
   title.pack(pady=(10,0))
 
   # list of words element
-  words = tk.Label(root, text="")
+  words_frame = tk.Frame(root)
+  words_frame.pack()
+  words = tk.Label(words_frame, text="")
   words.pack()
 
   # element for the entry and submit buttons
