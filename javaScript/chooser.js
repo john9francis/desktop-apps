@@ -13,6 +13,10 @@ class Chooser{
     this.wordList.push(...words);
   }
 
+  getWordList(){
+    return this.wordList
+  }
+
   getRandomWord(){
     return this.wordList[Math.floor(Math.random() * this.wordList.length)];
   }
@@ -21,3 +25,6 @@ class Chooser{
     this.wordList = [];
   }
 }
+
+
+module.exports = Chooser
