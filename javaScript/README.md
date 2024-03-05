@@ -10,5 +10,13 @@ I decided to use pgk to build my nodeJS app into an executable.
 pkg -t node14-win-x64 -o myApp.exe cli.js
 ```
 
+or, just use the package.json script
+
+```
+npm run dist
+```
+
+# How to build an executable with a gui
+
 # Useful websites
 - [Sciter](https://sciter.com/tutorials/)
